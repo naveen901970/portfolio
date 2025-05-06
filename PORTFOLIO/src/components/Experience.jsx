@@ -1,13 +1,11 @@
 import { EXPERIENCES } from "../assets/constants";
 import { motion } from "framer-motion";
 
-const Experience = () => {
-  console.log(EXPERIENCES); // Check if data is available
-
+export default function Experience() {
   return (
     <div className="pb-4">
-      <motion.h2 
-        whileInView={{ opacity: 1, y: 0 }} // Fixed opacity issue
+      <motion.h2
+        whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 0.5 }}
         className="my-20 text-center text-4xl text-white"
@@ -15,57 +13,61 @@ const Experience = () => {
         Experience
       </motion.h2>
 
-      <div>
-        {EXPERIENCES.map((experience, index) => (
-          <div key={index} className="mb-8 flex flex-wrap lg:justify-center  text-gray-100">
-           <motion.div
-  whileInView={{ opacity: 1, x: 0 }}
-  initial={{ opacity: 0, x: -100 }}
-  transition={{ duration: 1 }}
-  className="w-full lg:w-1/4"
->
-  <p className="mb-2 text-sm text-stone-400">
-    {experience.year}
-  </p>
-  <a
-    href="https://drive.google.com/file/d/1C2qTTuRsi-Kc7iLz3WPmIefsNb5puPHq/view?usp=drivesdk" // Replace with actual certificate link
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-xs text-blue-400 underline hover:text-blue-600 transition"
-  >
-    View Certificate
-  </a>
-</motion.div>
-
+      <div className="space-y-12">
+        {EXPERIENCES.map((exp, idx) => (
+          <div
+            key={idx}
+            className="flex flex-col lg:flex-row lg:items-start lg:space-x-8"
+          >
+            <motion.div
+              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.8, delay: idx * 0.2 }}
+              className="w-full lg:w-1/4 mb-4 lg:mb-0"
+            >
+              <p className="mb-2 text-sm text-stone-400">
+                {exp.year}
+              </p>
+              {/* Enhanced certificate link */}
+              <motion.a
+                href={exp.certificateLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-xs font-semibold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent underline-offset-2"
+                whileHover={{ scale: 1.1, rotate: 3 }}
+                whileTap={{ scale: 0.9, rotate: -3 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              >
+                View Certificate →
+              </motion.a>
+            </motion.div>
 
             <motion.div
-              whileInView={{ opacity: 1, x: 0 }} // Fixed animation
-              initial={{ opacity: 0, x: -100 }}
-              transition={{ duration: 1 }}
-              className="w-full max-w-xl lg:w-3/4" // Fixed tailwind class
+              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: 100 }}
+              transition={{ duration: 0.8, delay: idx * 0.2 }}
+              className="w-full lg:w-3/4"
             >
-              <h3 className="mb-2 font-semibold">
-                {experience.role} -{" "}
-                <span className="text-sm text-stone-500">
-                  {experience.company}
-                </span>
+              <h3 className="mb-2 text-xl font-semibold text-white">
+                {exp.role} <span className="text-sm text-stone-500">@ {exp.company}</span>
               </h3>
-              <p className="mb-4 text-stone-400">{experience.description}</p>
-
-              {experience.technologies.map((tech, index) => (
-                <span
-                  className="mr-2 mt-4 rounded bg-stone-900 px-2 py-1 text-sm font-medium text-stone-300"
-                  key={index}
-                >
-                  {tech}
-                </span>
-              ))}
+              <p className="mb-4 text-stone-400">
+                {exp.description}
+              </p>
+              <div className="flex flex-wrap">
+                {exp.technologies.map((tech, tIdx) => (
+                  <span
+                    key={tIdx}
+                    className="mr-2 mb-2 rounded bg-stone-900 px-2 py-1 text-sm font-medium text-stone-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           </div>
         ))}
       </div>
     </div>
   );
-};
-
-export default Experience;
+}
