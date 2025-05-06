@@ -3,71 +3,67 @@ import { motion } from "framer-motion";
 
 export default function Experience() {
   return (
-    <div className="pb-4">
-      <motion.h2
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -100 }}
-        transition={{ duration: 0.5 }}
-        className="my-20 text-center text-4xl text-white"
-      >
-        Experience
-      </motion.h2>
+    <section className="bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-screen-lg">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center text-3xl font-bold text-white sm:text-4xl"
+        >
+          Experience
+        </motion.h2>
 
-      <div className="space-y-12">
-        {EXPERIENCES.map((exp, idx) => (
-          <div
-            key={idx}
-            className="flex flex-col lg:flex-row lg:items-start lg:space-x-8"
-          >
+        <div className="mt-10 grid gap-6 sm:max-w-sm sm:mx-auto lg:grid-cols-2 lg:max-w-none">
+          {EXPERIENCES.map((exp, idx) => (
             <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.8, delay: idx * 0.2 }}
-              className="w-full lg:w-1/4 mb-4 lg:mb-0"
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="flex flex-col justify-between rounded-xl bg-gradient-to-br from-gray-800 to-gray-700 p-6 shadow-lg hover:shadow-2xl transition-shadow"
             >
-              <p className="mb-2 text-sm text-stone-400">
-                {exp.year}
-              </p>
-              {/* Enhanced certificate link */}
-              <motion.a
-                href={exp.certificateLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-xs font-semibold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent underline-offset-2"
-                whileHover={{ scale: 1.1, rotate: 3 }}
-                whileTap={{ scale: 0.9, rotate: -3 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              >
-                View Certificate →
-              </motion.a>
-            </motion.div>
+              <div>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium uppercase text-gray-400">
+                    {exp.year}
+                  </p>
+                  <motion.a
+                    href={exp.certificateLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-indigo-400 hover:text-indigo-200 underline"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Cert
+                  </motion.a>
+                </div>
 
-            <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: 100 }}
-              transition={{ duration: 0.8, delay: idx * 0.2 }}
-              className="w-full lg:w-3/4"
-            >
-              <h3 className="mb-2 text-xl font-semibold text-white">
-                {exp.role} <span className="text-sm text-stone-500">@ {exp.company}</span>
-              </h3>
-              <p className="mb-4 text-stone-400">
-                {exp.description}
-              </p>
-              <div className="flex flex-wrap">
+                <h3 className="mt-4 text-lg font-semibold text-white">
+                  {exp.role}
+                </h3>
+                <p className="text-sm text-gray-300">@ {exp.company}</p>
+
+                <p className="mt-3 text-gray-400 text-sm leading-relaxed">
+                  {exp.description}
+                </p>
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-2">
                 {exp.technologies.map((tech, tIdx) => (
                   <span
                     key={tIdx}
-                    className="mr-2 mb-2 rounded bg-stone-900 px-2 py-1 text-sm font-medium text-stone-300"
+                    className="inline-block rounded-full bg-indigo-600 bg-opacity-20 px-3 py-1 text-xs font-medium text-indigo-300"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
             </motion.div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

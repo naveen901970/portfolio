@@ -1,42 +1,55 @@
-import { CONTACT } from "../assets/constants"
-import{motion} from "framer-motion";
+import { CONTACT } from "../assets/constants";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   return (
-    <div className="border-t border-stone-900 pb-20">
-        <motion.h2
-        whileInView={{opacity:1,y:0}}
-        initial={{opacity:1,y:-100}}
-        transition={{duration:0.5}}
-        className="my-10 text-center text-4xl text-white">CONTACT:</motion.h2>
-        <div className="text-center traking-tighter">
-            <motion.p
-            whileInView={{opacity:1,x:0}}
-            initial={{opacity:1,x:-100}}
-            transition={{duration:1}}
-            className="my-4 text-white">
-                {CONTACT.address}
-            </motion.p>
-            <motion.p>
-                <h3 className="text-gray-100 " style={{color:"#176571"}}>I'm always open to new opportunities and collaborations !.
-                </h3>
-            </motion.p>
-            <motion.a href="tel:+6361467075" 
-            whileInView={{opacity:1,x:0}}
-            initial={{opacity:1,x:-100}}
-            transition={{duration:1}}
-            className="my-4 text-white">
-                {CONTACT.phoneNo}
-            </motion.a>
-            <div>
-            <a href="mailto:shravaniavula03@gmail.com" className="border-b  text-white " style={{textDecoration:"none"}}>
-                {CONTACT.email}
-            </a>
-            </div>
-        </div>
-      
+    <div className="border-t border-stone-900 bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+      <motion.h2
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -50 }}
+        transition={{ duration: 0.5 }}
+        className="mb-8 text-center text-4xl font-bold text-white"
+      >
+        CONTACT
+      </motion.h2>
+      <div className="mx-auto max-w-2xl text-center">
+        <motion.p
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.6 }}
+          className="mb-4 text-lg text-gray-300"
+        >
+          {CONTACT.address}
+        </motion.p>
+        <motion.p
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          transition={{ duration: 0.6 }}
+          className="mb-4 text-lg text-gray-300"
+        >
+          I'm always open to new opportunities and collaborations!
+        </motion.p>
+        <motion.a
+          href={`tel:${CONTACT.phoneNo}`}
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.6 }}
+          className="mb-4 block text-lg font-medium text-indigo-400 hover:text-indigo-300"
+        >
+          {CONTACT.phoneNo}
+        </motion.a>
+        <motion.a
+          href={`mailto:${CONTACT.email}`}
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          transition={{ duration: 0.6 }}
+          className="text-lg font-medium text-indigo-400 hover:text-indigo-300"
+        >
+          {CONTACT.email}
+        </motion.a>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
